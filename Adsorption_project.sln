@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adsorption_project", "Adsorption_project\Adsorption_project.csproj", "{2FFCD06E-BF91-4D12-928F-2139ABA37CBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FFCD06E-BF91-4D12-928F-2139ABA37CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFCD06E-BF91-4D12-928F-2139ABA37CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFCD06E-BF91-4D12-928F-2139ABA37CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFCD06E-BF91-4D12-928F-2139ABA37CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D69A7B2E-DEC1-475D-BBF3-5F6543162002}
+	EndGlobalSection
+EndGlobal
