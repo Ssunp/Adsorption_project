@@ -76,6 +76,8 @@
     <Compile Include="Main_Page.Designer.cs">
       <DependentUpon>Main_Page.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Utils.cs" />
+    <Compile Include="Models\AbsorptionColumn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project_Creation_page.cs">
       <SubType>Form</SubType>

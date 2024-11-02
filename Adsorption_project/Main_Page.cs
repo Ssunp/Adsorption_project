@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adsorption_project.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace Adsorption_project
         public Main_Page()
         {
             InitializeComponent();
+            var absorber = new Utils();
+            //aa.Test
         }
 
         private void Main_Page_Load(object sender, EventArgs e)
