@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Adsorption_project
@@ -144,8 +145,55 @@ namespace Adsorption_project
             dataGridView1.RowTemplate.Height = 30;
             dataGridView1.AllowUserToAddRows = false;    // Prevents the empty row at the bottom
 
+            PlotCustomData(absorptionColumn.PlotDataList);
+
             tabControl1.SelectedTab = columnResults;
 
+        }
+
+        private void PlotCustomData(List<PlotData> plotDataList)
+        {
+            // Set up the chart area
+            chart1.ChartAreas.Clear();
+            ChartArea chartArea = new ChartArea
+            {
+                BorderColor = System.Drawing.Color.Black,
+                BorderWidth = 1,
+                BorderDashStyle = ChartDashStyle.Solid
+            };
+            chart1.ChartAreas.Add(chartArea);
+
+            // Clear existing series
+            chart1.Series.Clear();
+
+            // Loop through each PlotData object and create a series for it
+            foreach (var plotData in plotDataList)
+            {
+                Series series = new Series(plotData.Label)
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = System.Drawing.ColorTranslator.FromHtml(plotData.LineColor),
+                    BorderWidth = 2,
+                    MarkerStyle = MarkerStyle.Circle,
+                    MarkerSize = 6,
+                    MarkerColor = System.Drawing.ColorTranslator.FromHtml(plotData.LineColor)
+                };
+
+                // Add points from plotData.X and plotData.Y
+                for (int i = 0; i < plotData.X.Length; i++)
+                {
+                    series.Points.AddXY(plotData.X[i], plotData.Y[i]);
+                }
+
+                // Add series to the chart
+                chart1.Series.Add(series);
+            }
+
+            // Set chart title and labels
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Adsorption Isotherm");
+            chartArea.AxisX.Title = "Pressure (bar)";
+            chartArea.AxisY.Title = "Adsorption loading, (mol/kg)";
         }
     }
 }

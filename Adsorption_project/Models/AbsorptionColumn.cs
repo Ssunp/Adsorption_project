@@ -5,10 +5,17 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Adsorption_project.Models
 {
+    public class PlotData
+    {
+        public string Label { get; set; }
+        public double[] X { get; set; }
+        public double[] Y { get; set; }
+        public string LineColor { get; set; }
+    }
+
     public class AbsorptionColumn : INotifyPropertyChanged
     {
         private double flowRate;
@@ -26,8 +33,6 @@ namespace Adsorption_project.Models
             InitializeParams();
         }
 
-
-        // double F_T, double T_f, double P_f, double y_fi, double q_i_s, double b_i_0, double delta_U_i
         public DataTable Calculate()
         {
             double F_T = flowRate;
@@ -221,9 +226,23 @@ namespace Adsorption_project.Models
             var solid_loading_25C = CalculateSolidLoading(25, pressure, b_i_0, delta_U_i, R, q_i_s);
             var solid_loading_100C = CalculateSolidLoading(100, pressure, b_i_0, delta_U_i, R, q_i_s);
 
-            //PrintArr2("pressure", pressure);
-            //PrintArr2("solid_loading_25C", solid_loading_25C.ToArray());
-            //PrintArr2("solid_loading_100C", solid_loading_100C.ToArray());
+            PlotDataList = new List<PlotData>
+            {
+                new PlotData
+                {
+                    Label = "T=25°C",
+                    X = pressure,
+                    Y = solid_loading_25C.ToArray(),
+                    LineColor = "#0000FF" // Blue color
+                },
+                new PlotData
+                {
+                    Label = "T=100°C",
+                    X = pressure,
+                    Y = solid_loading_100C.ToArray(),
+                    LineColor = "#FF0000" // Red color
+                }
+            };
 
 
             // Formatting the table
@@ -307,8 +326,11 @@ namespace Adsorption_project.Models
             dU = new double[] { -36641, -15800, 0, 0 };
         }
 
+        // user interface static data--------------------------------------
+        public List<PlotData> PlotDataList { get; set; }
 
-        // user interface input data--------------------------------------
+
+        // user interface valication data---------------------------------
         public double FlowRate
         {
             get => flowRate;
